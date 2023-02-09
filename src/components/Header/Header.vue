@@ -25,10 +25,11 @@ header {
   display: flex;
   justify-content: center;
   background-color: #eb0707;
+  z-index: 1;
 }
 
 #logo {
-  width: 130px;
+  height: 70px;
   padding-top: 10px;
 }
 
