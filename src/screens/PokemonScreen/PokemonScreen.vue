@@ -18,73 +18,83 @@
     <div id="container-white">
       <img
         :src="pokemonData.sprites.other.dream_world.front_default"
-        id="container-image"
+        class="container-image"
+      />
+      <img
+        :src="pokemonData.sprites.front_default"
+        class="container-image container-img-back"
       />
       <div class="container-flex">
-        <div id="view-class" v-if="pokemonData.types[0].type.name">
+        <div class="view-class" v-if="pokemonData.types[0].type.name">
           {{ pokemonData.types[0].type.name }}
         </div>
-        <div id="view-class" v-if="pokemonData.types[1]?.type.name">
+        <div class="view-class" v-if="pokemonData.types[1]?.type.name">
           {{ pokemonData.types[1]?.type.name }}
         </div>
       </div>
-      <div class="container-flex">
-        <p class="view-text">Sobre</p>
-      </div>
-      <div class="container-flex container-flex-infos">
-        <div class="view-infos">
-          <div class="container-infos">
-            <wheight-icon />
-            <p>{{ pokemonData.weight / 10 }} KG</p>
+      <div class="view-mobile">
+        <div class="container-information">
+          <div class="container-flex">
+            <p class="view-text">Sobre</p>
           </div>
-          <h1 class="view-name">Peso</h1>
+          <div class="container-flex container-flex-infos">
+            <div class="view-infos">
+              <div class="container-infos">
+                <wheight-icon />
+                <p>{{ pokemonData.weight / 10 }} KG</p>
+              </div>
+              <h1 class="view-name">Peso</h1>
+            </div>
+            <div class="view-infos">
+              <div class="container-infos">
+                <ruler-icon />
+                <p>{{ pokemonData.height / 10 }} m</p>
+              </div>
+              <h1 class="view-name">Tamanho</h1>
+            </div>
+            <div class="view-infos">
+              <div class="container-infos">
+                <star-icon />
+                <p>{{ pokemonData.base_experience }}</p>
+              </div>
+              <h1 class="view-name">Experiência</h1>
+            </div>
+          </div>
         </div>
-        <div class="view-infos">
-          <div class="container-infos">
-            <ruler-icon />
-            <p>{{ pokemonData.height / 10 }} m</p>
+        <div class="container-information">
+          <div class="container-flex">
+            <p class="view-text">Status</p>
           </div>
-          <h1 class="view-name">Tamanho</h1>
-        </div>
-        <div class="view-infos">
-          <div class="container-infos">
-            <star-icon />
-            <p>{{ pokemonData.base_experience }}</p>
-          </div>
-          <h1 class="view-name">Experiência</h1>
-        </div>
-      </div>
-      <div class="container-flex">
-        <p class="view-text">Status</p>
-      </div>
-      <div class="container-flex">
-        <div class="container-collumn">
-          <div class="view-description view-text">HP</div>
-          <div class="view-description view-text">ATK</div>
-          <div class="view-description view-text">DEF</div>
-          <div class="view-description view-text">SATK</div>
-          <div class="view-description view-text">SDEF</div>
-          <div class="view-description view-text">SPD</div>
-        </div>
-        <div id="view-division"></div>
-        <div class="container-collumn">
-          <div class="view-description view-text color-black">
-            {{ pokemonData.stats[0].base_stat }}
-          </div>
-          <div class="view-description view-text color-black">
-            {{ pokemonData.stats[1].base_stat }}
-          </div>
-          <div class="view-description view-text color-black">
-            {{ pokemonData.stats[2].base_stat }}
-          </div>
-          <div class="view-description view-text color-black">
-            {{ pokemonData.stats[3].base_stat }}
-          </div>
-          <div class="view-description view-text color-black">
-            {{ pokemonData.stats[4].base_stat }}
-          </div>
-          <div class="view-description view-text color-black">
-            {{ pokemonData.stats[5].base_stat }}
+          <div class="container-flex">
+            <div class="container-collumn">
+              <div class="view-text view-description">VIDA</div>
+              <div class="view-text view-description">ATAQUE</div>
+              <div class="view-text view-description">DEFESA</div>
+              <div class="view-text view-description">ATAQUE ESPECIAL</div>
+              <div class="view-text view-description">DEFESA ESPECIAL</div>
+              <div class="view-text view-description">VELOCIDADE</div>
+            </div>
+            <div id="view-division"></div>
+            <div class="container-collumn">
+              <div class="view-text view-description color-black">
+                {{ pokemonData.stats[0].base_stat }}
+              </div>
+              <div class="view-text view-description color-black">
+                {{ pokemonData.stats[1].base_stat }}
+              </div>
+              <div class="view-text view-description color-black">
+                {{ pokemonData.stats[2].base_stat }}
+              </div>
+              <div class="view-text view-description color-black">
+                {{ pokemonData.stats[3].base_stat }}
+              </div>
+              <div class="view-text view-description color-black">
+                {{ pokemonData.stats[4].base_stat }}
+              </div>
+              <div class="view-text view-description color-black">
+                {{ pokemonData.stats[5].base_stat }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -125,6 +135,7 @@ export default {
 <style scoped>
 #container-body {
   padding-bottom: 10px;
+  height: 100vh;
 }
 
 #container-top-bar {
@@ -159,14 +170,19 @@ export default {
   border-radius: 8px;
   margin-top: 19vh;
   position: relative;
+  height: 60vh;
 }
 
-#container-image {
+.container-image {
   height: 200px;
   position: absolute;
   top: -7%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.container-img-back {
+  top: 70%;
 }
 
 .container-flex {
@@ -176,13 +192,13 @@ export default {
   color: black;
 }
 
-#view-class {
+.view-class {
   padding: 20px 20px;
   height: 30px;
   background-color: aqua;
   margin-right: 20px;
   border-radius: 10px;
-  margin-top: 70px;
+  margin-top: 100px;
   font-weight: 700;
   font-size: 20px;
   display: flex;
@@ -205,6 +221,7 @@ export default {
 .container-infos {
   display: flex;
   align-items: center;
+  margin-top: 20px;
 }
 
 .container-collumn {
@@ -216,6 +233,7 @@ export default {
   align-items: center;
   justify-content: space-evenly;
   margin-top: 10px;
+  flex-direction: column;
 }
 
 .view-name {
@@ -240,5 +258,42 @@ export default {
 .color-black {
   color: black;
   font-weight: 400;
+}
+
+.view-mobile {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.container-information {
+  margin-top: -100px;
+}
+
+.container-types {
+  margin-top: 100px;
+}
+@media (max-width: 700px) {
+  .view-mobile {
+    display: initial;
+  }
+
+  .container-img-back {
+    display: none;
+  }
+
+  .container-information {
+    margin-top: 0;
+  }
+
+  .view-class {
+    margin-top: 70px;
+  }
+  .container-flex-infos {
+    flex-direction: row;
+  }
+  .container-infos {
+    margin-top: 0px;
+  }
 }
 </style>
