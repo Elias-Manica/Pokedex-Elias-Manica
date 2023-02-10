@@ -1,18 +1,14 @@
 <template>
   <div id="app">
-    <HomeScreen />
+    <router-view path="$router.key" />
   </div>
 </template>
 
 <script>
 import "./assets/styles/global.css";
 
-import HomeScreen from "./screens/HomeScreen/HomeScreen.vue";
-
 export default {
   name: "App",
-  components: {
-    HomeScreen,
-  },
+  components: {},
 };
 </script>

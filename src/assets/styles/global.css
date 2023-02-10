@@ -128,12 +128,8 @@ table {
 }
 a {
   text-decoration: none;
-  transition: 0.2s opacity;
 }
 
-a:hover {
-  opacity: 0.8;
-}
 * {
   box-sizing: border-box;
 }

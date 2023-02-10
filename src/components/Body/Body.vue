@@ -1,13 +1,13 @@
 <template>
   <main>
     <div id="container-cards">
-      <CardPokemon
-        v-for="(pokemons, index) in listPokemons"
-        :key="index"
-        :name-pokemon="pokemons.data.name"
-        :picture-url="pokemons.data.sprites.other.dream_world.front_default"
-        :number-pokemon="index"
-      />
+      <a href="/pokemon" v-for="(pokemons, index) in listPokemons" :key="index">
+        <CardPokemon
+          :name-pokemon="pokemons.data.name"
+          :picture-url="pokemons.data.sprites.other.dream_world.front_default"
+          :number-pokemon="index"
+        />
+      </a>
     </div>
   </main>
 </template>
