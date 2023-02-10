@@ -14,7 +14,7 @@
           <CardPokemon
             :name-pokemon="pokemons.data.name"
             :picture-url="pokemons.data.sprites.other.dream_world.front_default"
-            :number-pokemon="index"
+            :number-pokemon="pokemons.data.id"
           />
         </router-link>
       </a>
@@ -33,7 +33,7 @@
           <CardPokemon
             :name-pokemon="pokemons.data.name"
             :picture-url="pokemons.data.sprites.other.dream_world.front_default"
-            :number-pokemon="index"
+            :number-pokemon="pokemons.data.id"
           />
         </router-link>
       </a>
