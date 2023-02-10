@@ -1,8 +1,8 @@
 import axios from "axios";
 
-async function getPokemons() {
+async function getPokemons(initialId, finalId) {
   let endPoints = [];
-  for (let i = 1; i <= 12; i++) {
+  for (let i = initialId; i <= finalId; i++) {
     endPoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`);
   }
   const response = await axios.all(
@@ -11,4 +11,11 @@ async function getPokemons() {
   return response;
 }
 
-export { getPokemons };
+async function searchPokemon(name) {
+  const response = await axios.get(
+    `https://pokeapi.co/api/v2/pokemon/${name}/`
+  );
+  return response;
+}
+
+export { getPokemons, searchPokemon };
