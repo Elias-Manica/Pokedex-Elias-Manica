@@ -1,12 +1,22 @@
 <template>
   <main>
     <div id="container-cards">
-      <a href="/pokemon" v-for="(pokemons, index) in listPokemons" :key="index">
-        <CardPokemon
-          :name-pokemon="pokemons.data.name"
-          :picture-url="pokemons.data.sprites.other.dream_world.front_default"
-          :number-pokemon="index"
-        />
+      <a v-for="(pokemons, index) in listPokemons" :key="index">
+        <router-link
+          :to="{
+            name: 'Pokemon',
+            params: {
+              indexPokemon: index + 1,
+              pokemonData: pokemons.data,
+            },
+          }"
+        >
+          <CardPokemon
+            :name-pokemon="pokemons.data.name"
+            :picture-url="pokemons.data.sprites.other.dream_world.front_default"
+            :number-pokemon="index"
+          />
+        </router-link>
       </a>
     </div>
   </main>

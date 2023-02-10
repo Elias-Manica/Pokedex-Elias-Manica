@@ -8,7 +8,6 @@ async function getPokemons() {
   const response = await axios.all(
     endPoints.map((endPoints) => axios.get(endPoints))
   );
-  console.log(response);
   return response;
 }
 

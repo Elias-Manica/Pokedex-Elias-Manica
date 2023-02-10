@@ -2,21 +2,31 @@
   <div id="container-body">
     <div id="container-top-bar">
       <div id="container-name">
-        <a id="container-icon" href="/">
-          <menu-icon />
-        </a>
-        <p>Bulbasaur</p>
+        <router-link
+          :to="{
+            name: 'Home',
+          }"
+        >
+          <div id="container-icon">
+            <menu-icon />
+          </div>
+        </router-link>
+        <p>{{ pokemonData.name }}</p>
       </div>
-      <p>#1</p>
+      <p>#{{ indexProp }}</p>
     </div>
     <div id="container-white">
       <img
-        src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png"
+        :src="pokemonData.sprites.other.dream_world.front_default"
         id="container-image"
       />
       <div class="container-flex">
-        <div id="view-class">Grass</div>
-        <div id="view-class">Poison</div>
+        <div id="view-class" v-if="pokemonData.types[0].type.name">
+          {{ pokemonData.types[0].type.name }}
+        </div>
+        <div id="view-class" v-if="pokemonData.types[1]?.type.name">
+          {{ pokemonData.types[1]?.type.name }}
+        </div>
       </div>
       <div class="container-flex">
         <p class="view-text">Sobre</p>
@@ -25,23 +35,23 @@
         <div class="view-infos">
           <div class="container-infos">
             <wheight-icon />
-            <p>6,9 KG</p>
+            <p>{{ pokemonData.weight / 10 }} KG</p>
           </div>
           <h1 class="view-name">Peso</h1>
         </div>
         <div class="view-infos">
           <div class="container-infos">
             <ruler-icon />
-            <p>0,7 m</p>
+            <p>{{ pokemonData.height / 10 }} m</p>
           </div>
           <h1 class="view-name">Tamanho</h1>
         </div>
         <div class="view-infos">
-          <div class="container-infos container-collumn">
-            <p>Overgrow</p>
-            <p>Chlorophyll</p>
+          <div class="container-infos">
+            <star-icon />
+            <p>{{ pokemonData.base_experience }}</p>
           </div>
-          <h1 class="view-name">Habilidades</h1>
+          <h1 class="view-name">Experiência</h1>
         </div>
       </div>
       <div class="container-flex">
@@ -58,12 +68,24 @@
         </div>
         <div id="view-division"></div>
         <div class="container-collumn">
-          <div class="view-description view-text color-black">45</div>
-          <div class="view-description view-text color-black">49</div>
-          <div class="view-description view-text color-black">49</div>
-          <div class="view-description view-text color-black">65</div>
-          <div class="view-description view-text color-black">65</div>
-          <div class="view-description view-text color-black">45</div>
+          <div class="view-description view-text color-black">
+            {{ pokemonData.stats[0].base_stat }}
+          </div>
+          <div class="view-description view-text color-black">
+            {{ pokemonData.stats[1].base_stat }}
+          </div>
+          <div class="view-description view-text color-black">
+            {{ pokemonData.stats[2].base_stat }}
+          </div>
+          <div class="view-description view-text color-black">
+            {{ pokemonData.stats[3].base_stat }}
+          </div>
+          <div class="view-description view-text color-black">
+            {{ pokemonData.stats[4].base_stat }}
+          </div>
+          <div class="view-description view-text color-black">
+            {{ pokemonData.stats[5].base_stat }}
+          </div>
         </div>
       </div>
     </div>
@@ -74,6 +96,7 @@
 import MenuIcon from "vue-material-design-icons/ArrowLeft.vue";
 import WheightIcon from "vue-material-design-icons/Weight.vue";
 import RulerIcon from "vue-material-design-icons/Ruler.vue";
+import StarIcon from "vue-material-design-icons/Star.vue";
 
 export default {
   name: "Pokemon-screen",
@@ -81,13 +104,26 @@ export default {
     MenuIcon,
     WheightIcon,
     RulerIcon,
+    StarIcon,
+  },
+  props: ["indexPokemon", "pokemonData"],
+  data() {
+    return {
+      indexProp: "Index Pokemon",
+      pokemonProp: "Pokemon infos Prop",
+    };
+  },
+  mounted() {
+    if (this.indexProp) {
+      this.indexProp = this.indexPokemon;
+      this.pokemonProp = this.pokemonData;
+    }
   },
 };
 </script>
 
 <style scoped>
 #container-body {
-  background-color: #74cb48;
   padding-bottom: 10px;
 }
 
