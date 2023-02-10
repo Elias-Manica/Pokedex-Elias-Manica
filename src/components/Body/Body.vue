@@ -6,7 +6,6 @@
           :to="{
             name: 'Pokemon',
             params: {
-              indexPokemon: index + 1,
               pokemonData: pokemons.data,
             },
           }"
@@ -25,7 +24,6 @@
           :to="{
             name: 'Pokemon',
             params: {
-              indexPokemon: index + 1,
               pokemonData: pokemons.data,
             },
           }"

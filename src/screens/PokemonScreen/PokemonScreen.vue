@@ -13,7 +13,7 @@
         </router-link>
         <p>{{ pokemonData.name }}</p>
       </div>
-      <p>#{{ indexProp }}</p>
+      <p>#{{ pokemonData.id }}</p>
     </div>
     <div id="container-white">
       <img
@@ -116,16 +116,17 @@ export default {
     RulerIcon,
     StarIcon,
   },
-  props: ["indexPokemon", "pokemonData"],
+  props: ["id", "pokemonData"],
   data() {
     return {
-      indexProp: "Index Pokemon",
       pokemonProp: "Pokemon infos Prop",
     };
   },
+  created() {
+    console.log(this.$route.params, " params");
+  },
   mounted() {
-    if (this.indexProp) {
-      this.indexProp = this.indexPokemon;
+    if (this.pokemonProp) {
       this.pokemonProp = this.pokemonData;
     }
   },
