@@ -25,10 +25,36 @@
         class="container-image container-img-back"
       />
       <div class="container-flex">
-        <div class="view-class" v-if="pokemonData.types[0].type.name">
+        <div
+          class="view-class"
+          :class="{
+            purple: isPurple,
+            green: isGreen,
+            red: isRed,
+            lightPurple: isLightPurple,
+            blue: isBlue,
+            bug: isBug,
+            eletric: isEletric,
+            pink: isFary,
+          }"
+          v-if="pokemonData.types[0].type.name"
+        >
           {{ pokemonData.types[0].type.name }}
         </div>
-        <div class="view-class" v-if="pokemonData.types[1]?.type.name">
+        <div
+          class="view-class"
+          v-if="pokemonData.types[1]?.type.name"
+          :class="{
+            purple: isPurple2,
+            green: isGreen2,
+            red: isRed2,
+            lightPurple: isLightPurple2,
+            blue: isBlue2,
+            bug: isBug2,
+            eletric: isEletric2,
+            pink: isFary2,
+          }"
+        >
           {{ pokemonData.types[1]?.type.name }}
         </div>
       </div>
@@ -120,14 +146,43 @@ export default {
   data() {
     return {
       pokemonProp: "Pokemon infos Prop",
+      isPurple: false,
+      isPurple2: false,
+      isGreen: false,
+      isGreen2: false,
+      isRed: false,
+      isRed2: false,
+      isLightPurple: false,
+      isLightPurple2: false,
+      isBlue: false,
+      isBlue2: false,
+      isBug: false,
+      isBug2: false,
+      isEletric: false,
+      isEletric2: false,
+      isFary: false,
+      isFary2: false,
     };
-  },
-  created() {
-    console.log(this.$route.params, " params");
   },
   mounted() {
     if (this.pokemonProp) {
       this.pokemonProp = this.pokemonData;
+      this.isPurple = this.pokemonData.types[0].type.name === "poison";
+      this.isPurple2 = this.pokemonData.types[1]?.type.name === "poison";
+      this.isGreen = this.pokemonData.types[0].type.name === "grass";
+      this.isGreen2 = this.pokemonData.types[1]?.type.name === "grass";
+      this.isRed = this.pokemonData.types[0].type.name === "fire";
+      this.isRed2 = this.pokemonData.types[1]?.type.name === "fire";
+      this.isLightPurple = this.pokemonData.types[0].type.name === "flying";
+      this.isLightPurple2 = this.pokemonData.types[1]?.type.name === "flying";
+      this.isBlue = this.pokemonData.types[0].type.name === "water";
+      this.isBlue2 = this.pokemonData.types[1]?.type.name === "water";
+      this.isBug = this.pokemonData.types[0].type.name === "bug";
+      this.isBug2 = this.pokemonData.types[1]?.type.name === "bug";
+      this.isEletric = this.pokemonData.types[0].type.name === "electric";
+      this.isEletric2 = this.pokemonData.types[1]?.type.name === "electric";
+      this.isFary = this.pokemonData.types[0].type.name === "fairy";
+      this.isFary2 = this.pokemonData.types[1]?.type.name === "fairy";
     }
   },
 };
@@ -196,7 +251,7 @@ export default {
 .view-class {
   padding: 20px 20px;
   height: 30px;
-  background-color: aqua;
+  background-color: #a8a77a;
   margin-right: 20px;
   border-radius: 10px;
   margin-top: 100px;
@@ -208,6 +263,37 @@ export default {
   color: #fff;
 }
 
+.purple {
+  background-color: #a33da2;
+}
+
+.green {
+  background-color: #7ac74c;
+}
+
+.red {
+  background-color: #ee8130;
+}
+
+.lightPurple {
+  background-color: #a891ec;
+}
+
+.blue {
+  background-color: #6390f0;
+}
+
+.bug {
+  background-color: #a6b91a;
+}
+
+.eletric {
+  background-color: #f7d02c;
+}
+
+.pink {
+  background-color: #d685ad;
+}
 .view-text {
   color: black;
   margin-top: 20px;
