@@ -1,12 +1,39 @@
 <template>
   <main>
-    <div id="container-cards">
-      <a href="/pokemon" v-for="(pokemons, index) in listPokemons" :key="index">
-        <CardPokemon
-          :name-pokemon="pokemons.data.name"
-          :picture-url="pokemons.data.sprites.other.dream_world.front_default"
-          :number-pokemon="index"
-        />
+    <div class="container-cards" v-if="listPokemons.length >= 6">
+      <a v-for="(pokemons, index) in listPokemons" :key="index">
+        <router-link
+          :to="{
+            name: 'Pokemon',
+            params: {
+              pokemonData: pokemons.data,
+            },
+          }"
+        >
+          <CardPokemon
+            :name-pokemon="pokemons.data.name"
+            :picture-url="pokemons.data.sprites.other.dream_world.front_default"
+            :number-pokemon="pokemons.data.id"
+          />
+        </router-link>
+      </a>
+    </div>
+    <div v-else class="container-cards container-one-card">
+      <a v-for="(pokemons, index) in listPokemons" :key="index">
+        <router-link
+          :to="{
+            name: 'Pokemon',
+            params: {
+              pokemonData: pokemons.data,
+            },
+          }"
+        >
+          <CardPokemon
+            :name-pokemon="pokemons.data.name"
+            :picture-url="pokemons.data.sprites.other.dream_world.front_default"
+            :number-pokemon="pokemons.data.id"
+          />
+        </router-link>
       </a>
     </div>
   </main>
@@ -15,31 +42,26 @@
 <script>
 import CardPokemon from "../Card/Card.vue";
 
-import { getPokemons } from "../../services/apiService.js";
-
 export default {
   name: "Body-",
   components: {
     CardPokemon,
   },
-  data() {
-    return {
-      listPokemons: [],
-    };
-  },
-  mounted() {
-    getPokemons().then((response) => {
-      this.listPokemons = response;
-    });
+  props: {
+    listPokemons: Array,
   },
 };
 </script>
 
 <style scoped>
-#container-cards {
+.container-cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding-bottom: 60px;
+}
+
+.container-one-card {
+  height: 100vh;
 }
 </style>

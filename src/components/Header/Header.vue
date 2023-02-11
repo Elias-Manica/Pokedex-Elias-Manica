@@ -2,8 +2,16 @@
   <header>
     <nav class="container">
       <div id="container-flex">
-        <a href="/"> <img src="../../assets/image/pokedex.png" id="logo" /></a>
-        <input id="input-search" placeholder="Procure por um Pokemon" />
+        <a> <img src="../../assets/image/pokedex.png" id="logo" /></a>
+        <input
+          type="text"
+          :value="search"
+          id="input-search"
+          placeholder="Procure por um Pokemon"
+          @input="
+            $emit('input', findPokemon($event.target.value.toLowerCase()))
+          "
+        />
       </div>
     </nav>
   </header>
@@ -12,6 +20,10 @@
 <script>
 export default {
   name: "Header-topbar",
+  props: {
+    search: String,
+    findPokemon: Function,
+  },
 };
 </script>
 

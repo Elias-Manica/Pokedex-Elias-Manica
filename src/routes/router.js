@@ -9,11 +9,14 @@ import Pokemon from "../screens/PokemonScreen/PokemonScreen";
 const routes = [
   {
     path: "/",
+    name: "Home",
     component: Home,
   },
   {
-    path: "/pokemon",
+    path: "/pokemon/:id",
+    name: "Pokemon",
     component: Pokemon,
+    props: true,
   },
 ];
 

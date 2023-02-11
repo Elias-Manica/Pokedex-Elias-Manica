@@ -4,7 +4,7 @@
       <img :src="pictureUrl" id="img-pokemon" />
     </div>
     <div id="layout-name">
-      <p>#{{ numberPokemon + 1 }}</p>
+      <p>#{{ numberPokemon }}</p>
       <p>{{ namePokemon }}</p>
     </div>
   </div>
