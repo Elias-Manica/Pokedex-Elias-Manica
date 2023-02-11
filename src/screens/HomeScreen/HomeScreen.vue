@@ -2,6 +2,10 @@
   <div>
     <Header :search="search" :findPokemon="findPokemon" />
     <Body :listPokemons="listPokemons" />
+    <div
+      v-if="listPokemons.length"
+      v-observe-visibility="handleScrollToBottom"
+    ></div>
   </div>
 </template>
 
@@ -9,10 +13,15 @@
 import Header from "../../components/Header/Header.vue";
 import Body from "../../components/Body/Body.vue";
 
+import { ObserveVisibility } from "vue-observe-visibility";
+
 import { getPokemons, searchPokemon } from "../../services/apiService";
 
 export default {
   name: "Home-screen",
+  directives: {
+    ObserveVisibility,
+  },
   components: {
     Header,
     Body,
@@ -21,10 +30,12 @@ export default {
     return {
       listPokemons: [],
       search: "",
+      initialId: 1,
+      lastId: 14,
     };
   },
-  mounted() {
-    getPokemons(1, 14).then((response) => {
+  created() {
+    getPokemons(this.initialId, this.lastId).then((response) => {
       this.listPokemons = response;
     });
   },
@@ -39,6 +50,16 @@ export default {
             this.listPokemons = response;
           });
         });
+    },
+    handleScrollToBottom(isVisible) {
+      if (!isVisible) {
+        return;
+      }
+      this.initialId = this.initialId + 14;
+      this.lastId = this.lastId + 14;
+      getPokemons(this.initialId, this.lastId).then((response) => {
+        this.listPokemons = [...this.listPokemons, ...response];
+      });
     },
   },
 };
