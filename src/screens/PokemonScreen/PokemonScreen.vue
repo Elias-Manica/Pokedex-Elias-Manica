@@ -208,6 +208,10 @@ export default {
   color: #fff;
 }
 
+.color-purple {
+  background-color: #a33da2;
+}
+
 .view-text {
   color: black;
   margin-top: 20px;

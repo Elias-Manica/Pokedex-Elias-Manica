@@ -1,11 +1,13 @@
 <template>
   <div>
     <Header :search="search" :findPokemon="findPokemon" />
-    <Body :listPokemons="listPokemons" />
-    <div
-      v-if="listPokemons.length"
-      v-observe-visibility="handleScrollToBottom"
-    ></div>
+    <div v-if="isLoading" class="container-loading">
+      <img src="../../assets/image/loading-pikachu.gif" id="image-loading" />
+    </div>
+    <div v-else><Body :listPokemons="listPokemons" /></div>
+    <div v-if="listPokemons.length" v-observe-visibility="handleScrollToBottom">
+      Carregando
+    </div>
   </div>
 </template>
 
@@ -32,11 +34,14 @@ export default {
       search: "",
       initialId: 1,
       lastId: 20,
+      isLoading: false,
     };
   },
   created() {
+    this.isLoading = true;
     getPokemons(this.initialId, this.lastId).then((response) => {
       this.listPokemons = response;
+      this.isLoading = false;
     });
   },
   methods: {
@@ -65,4 +70,17 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.container-loading {
+  margin-top: 120px;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#image-loading {
+  height: 200px;
+  width: 200px;
+}
+</style>
