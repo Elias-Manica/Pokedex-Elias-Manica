@@ -31,7 +31,7 @@ export default {
       listPokemons: [],
       search: "",
       initialId: 1,
-      lastId: 14,
+      lastId: 20,
     };
   },
   created() {
@@ -46,7 +46,7 @@ export default {
           this.listPokemons = [response];
         })
         .catch(() => {
-          getPokemons(1, 14).then((response) => {
+          getPokemons(1, 20).then((response) => {
             this.listPokemons = response;
           });
         });
@@ -55,8 +55,8 @@ export default {
       if (!isVisible) {
         return;
       }
-      this.initialId = this.initialId + 14;
-      this.lastId = this.lastId + 14;
+      this.initialId = this.initialId + 20;
+      this.lastId = this.lastId + 20;
       getPokemons(this.initialId, this.lastId).then((response) => {
         this.listPokemons = [...this.listPokemons, ...response];
       });
